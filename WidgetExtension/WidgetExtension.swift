@@ -49,12 +49,19 @@ struct WidgetExtensionEntryView : View {
     var entry: Provider.Entry
 
     var body: some View {
-        HStack {
-            Text("현재 시각 :")
-                .font(.system(size: 15))
-            Text(entry.date, style: .time)
-                .fontWeight(.medium)
-                .font(.system(size: 14))
+        VStack(alignment: .leading, spacing: 2){
+            Image(systemName: "iphone")
+                .resizable()
+                .frame(width: 20, height: 30, alignment: .center)
+            
+             
+            HStack {
+                Text("Now:")
+                    .font(.system(size: 15))
+                Text(entry.date, style: .time)
+                    .fontWeight(.medium)
+                    .font(.system(size: 14))
+            }
         }
     }
     
