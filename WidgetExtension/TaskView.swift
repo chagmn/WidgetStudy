@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TaskView: View {
+//    @Binding var task: Task
+    
     var body: some View {
         HStack {
             Circle()
@@ -21,6 +23,6 @@ struct TaskView: View {
 
 struct TaskView_Previews: PreviewProvider {
     static var previews: some View {
-        TaskView()
+        TaskView(task: $Task)
     }
 }

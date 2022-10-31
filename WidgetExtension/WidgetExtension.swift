@@ -51,24 +51,43 @@ struct SimpleEntry: TimelineEntry {
 // 실제 위젯을 표현하는 부분
 struct WidgetExtensionEntryView : View {
     var entry: Provider.Entry
+    @StateObject var task: [Task] = [
+        Task(
+            status: .request,
+            title: "업무1",
+            assign: ["나"],
+            taskNum: 1
+        ),
+        Task(
+            status: .request,
+            title: "업무2",
+            assign: ["나"],
+            taskNum: 2
+        )
+    ]
 
     var body: some View {
-        VStack(
-            alignment: .leading
+        GroupBox(
+            label: Label("오늘 마감 업무", systemImage: "list.clipboard")
         ) {
-            Text("오늘 마감 업무")
-                .font(.title3)
-                .fontWeight(.bold)
-                
             VStack(
                 alignment: .leading,
                 spacing: 8
             ){
-                TaskView()
-                TaskView()
+                ForEach($task) { taskValue in
+                    TaskView(task: taskValue)
+                }
             }
+            .frame(
+                maxWidth: .infinity,
+                maxHeight: .infinity,
+                alignment: .topLeading
+            )
         }
-        .padding(EdgeInsets(top: 0, leading: 5, bottom: 5, trailing: 5))
+        .frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity
+        )
     }
     
 }
