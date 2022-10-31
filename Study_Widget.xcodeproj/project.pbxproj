@@ -23,6 +23,8 @@
 		76788405278207AA0028B3DD /* WidgetExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 76788401278207A90028B3DD /* WidgetExtension.intentdefinition */; };
 		76788406278207AA0028B3DD /* WidgetExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 76788401278207A90028B3DD /* WidgetExtension.intentdefinition */; };
 		76788409278207AA0028B3DD /* WidgetExtensionExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 767883F8278207A90028B3DD /* WidgetExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		767903BB29100D6B00B04F4C /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767903BA29100D6B00B04F4C /* Task.swift */; };
+		767903BC29100D6B00B04F4C /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767903BA29100D6B00B04F4C /* Task.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +86,7 @@
 		76788401278207A90028B3DD /* WidgetExtension.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = WidgetExtension.intentdefinition; sourceTree = "<group>"; };
 		76788402278207AA0028B3DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76788404278207AA0028B3DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		767903BA29100D6B00B04F4C /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +149,7 @@
 		767883C3278207960028B3DD /* Study_Widget */ = {
 			isa = PBXGroup;
 			children = (
+				767903BD29100E3F00B04F4C /* Model */,
 				767883C4278207960028B3DD /* AppDelegate.swift */,
 				767883C6278207960028B3DD /* SceneDelegate.swift */,
 				767883C8278207960028B3DD /* ViewController.swift */,
@@ -192,6 +196,14 @@
 				76788404278207AA0028B3DD /* Info.plist */,
 			);
 			path = WidgetExtension;
+			sourceTree = "<group>";
+		};
+		767903BD29100E3F00B04F4C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				767903BA29100D6B00B04F4C /* Task.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,6 +370,7 @@
 			files = (
 				76788406278207AA0028B3DD /* WidgetExtension.intentdefinition in Sources */,
 				767883C9278207960028B3DD /* ViewController.swift in Sources */,
+				767903BB29100D6B00B04F4C /* Task.swift in Sources */,
 				767883C5278207960028B3DD /* AppDelegate.swift in Sources */,
 				767883C7278207960028B3DD /* SceneDelegate.swift in Sources */,
 			);
@@ -385,6 +398,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				76788405278207AA0028B3DD /* WidgetExtension.intentdefinition in Sources */,
+				767903BC29100D6B00B04F4C /* Task.swift in Sources */,
 				76788400278207A90028B3DD /* WidgetExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
