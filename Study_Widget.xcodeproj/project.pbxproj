@@ -22,7 +22,7 @@
 		76788403278207AA0028B3DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76788402278207AA0028B3DD /* Assets.xcassets */; };
 		76788405278207AA0028B3DD /* WidgetExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 76788401278207A90028B3DD /* WidgetExtension.intentdefinition */; };
 		76788406278207AA0028B3DD /* WidgetExtension.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 76788401278207A90028B3DD /* WidgetExtension.intentdefinition */; };
-		76788409278207AA0028B3DD /* WidgetExtensionExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 767883F8278207A90028B3DD /* WidgetExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		76788409278207AA0028B3DD /* WidgetExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 767883F8278207A90028B3DD /* WidgetExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		767903BB29100D6B00B04F4C /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767903BA29100D6B00B04F4C /* Task.swift */; };
 		767903BC29100D6B00B04F4C /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767903BA29100D6B00B04F4C /* Task.swift */; };
 		767903C12910153600B04F4C /* TaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767903BE2910106D00B04F4C /* TaskView.swift */; };
@@ -54,15 +54,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		7678840D278207AA0028B3DD /* Embed App Extensions */ = {
+		7678840D278207AA0028B3DD /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				76788409278207AA0028B3DD /* WidgetExtensionExtension.appex in Embed App Extensions */,
+				76788409278207AA0028B3DD /* WidgetExtensionExtension.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -220,7 +220,7 @@
 				767883BD278207960028B3DD /* Sources */,
 				767883BE278207960028B3DD /* Frameworks */,
 				767883BF278207960028B3DD /* Resources */,
-				7678840D278207AA0028B3DD /* Embed App Extensions */,
+				7678840D278207AA0028B3DD /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -293,7 +293,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1320;
-				LastUpgradeCheck = 1320;
+				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					767883C0278207960028B3DD = {
 						CreatedOnToolsVersion = 13.2.1;

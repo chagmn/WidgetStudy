@@ -51,38 +51,58 @@ struct SimpleEntry: TimelineEntry {
 // 실제 위젯을 표현하는 부분
 struct WidgetExtensionEntryView : View {
     var entry: Provider.Entry
-    @StateObject var task: [Task] = [
+    var tasks: [Task] = [
         Task(
             status: .request,
             title: "업무1",
             assign: ["나"],
+            taskNum: 0
+        ),
+        Task(
+            status: .progress,
+            title: "업무2",
+            assign: ["나"],
             taskNum: 1
         ),
         Task(
-            status: .request,
-            title: "업무2",
+            status: .feedback,
+            title: "업무명의 길이가 길어진다면 어떻게 될까아아요?",
             assign: ["나"],
             taskNum: 2
+        ),
+        Task(
+            status: .complete,
+            title: "이건 완료 업무",
+            assign: ["나"],
+            taskNum: 3
+        ),
+        Task(
+            status: .hold,
+            title: "보류 업무",
+            assign: ["나"],
+            taskNum: 4
         )
     ]
 
     var body: some View {
         GroupBox(
-            label: Label("오늘 마감 업무", systemImage: "list.clipboard")
+            label: Label("금일 마감 업무", systemImage: "list.clipboard")
         ) {
-            VStack(
-                alignment: .leading,
-                spacing: 8
-            ){
-                ForEach($task) { taskValue in
-                    TaskView(task: taskValue)
+//            ScrollView() {
+                VStack(
+                    alignment: .leading,
+                    spacing: 8
+                ){
+                    ForEach(tasks) { taskValue in
+                        TaskView(task: taskValue)
+                    }
                 }
-            }
-            .frame(
-                maxWidth: .infinity,
-                maxHeight: .infinity,
-                alignment: .topLeading
-            )
+                .frame(
+                    maxWidth: .infinity,
+                    maxHeight: .infinity,
+                    alignment: .topLeading
+                )
+//            }
         }
         .frame(
             maxWidth: .infinity,
