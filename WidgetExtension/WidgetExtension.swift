@@ -54,12 +54,12 @@ struct WidgetExtensionEntryView : View {
     var tasks: [Task] = [
         Task(
             status: .request,
-            title: "업무1",
+            title: "플로우 테크 세미나 준비",
             assign: ["나"]
         ),
         Task(
             status: .progress,
-            title: "업무2",
+            title: "테크 세미나 피피티 자료 준비하기",
             assign: ["나"]
         ),
         Task(
@@ -135,7 +135,14 @@ struct WidgetExtension_Previews: PreviewProvider {
                 entry: SimpleEntry(date: Date())
             )
             .previewContext(
-                WidgetPreviewContext(family: .systemSmall)
+                WidgetPreviewContext(family: .systemMedium)
+            )
+            
+            WidgetExtensionEntryView(
+                entry: SimpleEntry(date: Date())
+            )
+            .previewContext(
+                WidgetPreviewContext(family: .systemLarge)
             )
         }
     }
