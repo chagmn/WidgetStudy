@@ -55,61 +55,59 @@ struct WidgetExtensionEntryView : View {
         Task(
             status: .request,
             title: "업무1",
-            assign: ["나"],
-            taskNum: 0
+            assign: ["나"]
         ),
         Task(
             status: .progress,
             title: "업무2",
-            assign: ["나"],
-            taskNum: 1
+            assign: ["나"]
         ),
         Task(
             status: .feedback,
             title: "업무명의 길이가 길어진다면 어떻게 될까아아요?",
-            assign: ["나"],
-            taskNum: 2
+            assign: ["나"]
         ),
         Task(
             status: .complete,
             title: "이건 완료 업무",
-            assign: ["나"],
-            taskNum: 3
+            assign: ["나"]
         ),
         Task(
             status: .hold,
             title: "보류 업무",
-            assign: ["나"],
-            taskNum: 4
+            assign: ["나"]
         )
     ]
-
+    
     var body: some View {
         GroupBox(
             label: Label("금일 마감 업무", systemImage: "list.clipboard")
         ) {
-//            ScrollView() {
-                VStack(
-                    alignment: .leading,
-                    spacing: 8
-                ){
-                    ForEach(tasks) { taskValue in
+            LazyVStack(
+                alignment: .leading,
+                spacing: 8
+            ) {
+                ForEach(Array(tasks.enumerated()), id: \.offset) { index, taskValue in
+                    if index < 3 {
                         TaskView(task: taskValue)
                     }
                 }
-                .frame(
-                    maxWidth: .infinity,
-                    maxHeight: .infinity,
-                    alignment: .topLeading
-                )
-//            }
+                
+                Text("+\(tasks.count-3)개 업무가 금일 마감입니다.")
+                    .font(.caption)
+                    .padding([.leading], 8)
+            }
+            .frame(
+                maxHeight: .infinity,
+                alignment: .topLeading
+            )
         }
         .frame(
             maxWidth: .infinity,
-            maxHeight: .infinity
+            maxHeight: .infinity,
+            alignment: .top
         )
     }
-    
 }
 
 @main

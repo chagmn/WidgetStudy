@@ -15,9 +15,10 @@ struct TaskView: View {
         HStack {
             Circle()
                 .foregroundColor(color())
-                .frame(width: 12)
+                .frame(width: 8)
             
             Text(task.title)
+                .font(.footnote)
         }
     }
     
@@ -27,18 +28,14 @@ struct TaskView: View {
             return .blue
         case .progress:
             return .green
-        case .feedback:
-            return .orange
-        case .complete:
-            return Color(uiColor: .blue)
-        case .hold:
-            return Color(uiColor: .lightGray)
+        default:
+            return .gray
         }
     }
 }
 
 struct TaskView_Previews: PreviewProvider {
-    static let task: Task = Task(status: .complete, title: "임시", assign: [], taskNum: 100)
+    static let task: Task = Task(status: .complete, title: "임시", assign: [])
     
     static var previews: some View {
         TaskView(task: task)

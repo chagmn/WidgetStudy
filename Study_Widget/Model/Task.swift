@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct Task: Identifiable {
-    var id: Int
+struct Task: Hashable {
     let status: TaskStatus
     let title: String
     let assign: [String]
@@ -17,8 +16,7 @@ struct Task: Identifiable {
     let progressRate: Int?
     let priority: TaskPriority?
     
-    init(status: TaskStatus, title: String, assign: [String], startDate: Date? = nil, endDate: Date? = nil, progressRate: Int? = 0, priority: TaskPriority? = .no, taskNum: Int) {
-        self.id = taskNum
+    init(status: TaskStatus, title: String, assign: [String], startDate: Date? = nil, endDate: Date? = nil, progressRate: Int? = 0, priority: TaskPriority? = .no) {
         self.status = status
         self.title = title
         self.assign = assign
