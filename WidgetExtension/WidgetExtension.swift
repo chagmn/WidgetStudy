@@ -48,8 +48,8 @@ struct SimpleEntry: TimelineEntry {
     let date: Date
 }
 
-// 실제 위젯을 표현하는 부분
-struct WidgetExtensionEntryView : View {
+// medium 사이즈 위젯 뷰
+struct TaskWidgetMediumView : View {
     var entry: Provider.Entry
     var tasks: [Task] = [
         Task(
@@ -78,7 +78,6 @@ struct WidgetExtensionEntryView : View {
             assign: ["나"]
         )
     ]
-    
     var body: some View {
         GroupBox(
             label: Label("금일 마감 업무", systemImage: "list.clipboard")
@@ -110,6 +109,61 @@ struct WidgetExtensionEntryView : View {
     }
 }
 
+// Large 사이즈 위젯 뷰
+struct TaskWidgetLargeView : View {
+    var entry: Provider.Entry
+    var tasks: [Task] = [
+        Task(
+            status: .request,
+            title: "플로우 테크 세미나 준비",
+            assign: ["나"]
+        ),
+        Task(
+            status: .progress,
+            title: "테크 세미나 피피티 자료 준비하기",
+            assign: ["나"]
+        ),
+        Task(
+            status: .feedback,
+            title: "업무명의 길이가 길어진다면 어떻게 될까아아요?",
+            assign: ["나"]
+        ),
+        Task(
+            status: .complete,
+            title: "이건 완료 업무",
+            assign: ["나"]
+        ),
+        Task(
+            status: .hold,
+            title: "보류 업무",
+            assign: ["나"]
+        )
+    ]
+    var body: some View {
+        GroupBox(
+            label: Label("마감 업무", systemImage: "list.clipboard")
+        ) {
+            LazyVStack(
+                alignment: .leading,
+                spacing: 8
+            ) {
+                ForEach(Array(tasks.enumerated()), id: \.offset) { index, taskValue in
+                    TaskView(task: taskValue)
+                }
+            }
+            .frame(
+                maxHeight: .infinity,
+                alignment: .topLeading
+            )
+        }
+        .frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity,
+            alignment: .top
+        )
+    }
+}
+
 @main
 struct WidgetExtension: Widget {
     private let kind: String = "WidgetExtension"
@@ -120,7 +174,7 @@ struct WidgetExtension: Widget {
             kind: kind,
             provider: Provider()
         ) { entry in
-            WidgetExtensionEntryView(entry: entry)
+            TaskWidgetMediumView(entry: entry)
         }
         .configurationDisplayName("위젯 공부")
         .description("위젯 푹 찍먹")
@@ -131,14 +185,14 @@ struct WidgetExtension: Widget {
 struct WidgetExtension_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            WidgetExtensionEntryView(
+            TaskWidgetMediumView(
                 entry: SimpleEntry(date: Date())
             )
             .previewContext(
                 WidgetPreviewContext(family: .systemMedium)
             )
             
-            WidgetExtensionEntryView(
+            TaskWidgetLargeView(
                 entry: SimpleEntry(date: Date())
             )
             .previewContext(
