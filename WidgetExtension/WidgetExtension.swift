@@ -139,28 +139,72 @@ struct TaskWidgetLargeView : View {
             assign: ["나"]
         )
     ]
+    
+    var priorityTasks: [Task] = [
+        Task(
+            status: .request,
+            title: "급한업무",
+            assign: ["나"]
+        ),
+        Task(
+            status: .progress,
+            title: "테크 세미나 피피티 자료 준비하기",
+            assign: ["나"]
+        ),
+        Task(
+            status: .feedback,
+            title: "업무명의 길이가 길어진다면 어떻게 될까아아요?",
+            assign: ["나"]
+        )
+    ]
+    
     var body: some View {
-        GroupBox(
-            label: Label("마감 업무", systemImage: "list.clipboard")
-        ) {
-            LazyVStack(
-                alignment: .leading,
-                spacing: 8
+        
+        VStack {
+            GroupBox(
+                label: Label("마감 업무", systemImage: "list.clipboard")
             ) {
-                ForEach(Array(tasks.enumerated()), id: \.offset) { index, taskValue in
-                    TaskView(task: taskValue)
+                LazyVStack(
+                    alignment: .leading,
+                    spacing: 8
+                ) {
+                    ForEach(Array(tasks.enumerated()), id: \.offset) { index, taskValue in
+                        TaskView(task: taskValue)
+                    }
+                }
+                .frame(
+                    maxHeight: .infinity,
+                    alignment: .topLeading
+                )
+            }
+            .padding([.top, .leading, .trailing], 8)
+            .frame(
+                maxWidth: .infinity,
+                maxHeight: .infinity,
+                alignment: .top
+            )
+                        
+            GroupBox(
+                label: Label("이번주 우선 업무", systemImage: "list.clipboard")
+            ) {
+                LazyVStack(
+                    alignment: .leading,
+                    spacing: 8
+                ) {
+                    ForEach(Array(priorityTasks.enumerated()), id: \.offset) { index, taskValue in
+                        TaskView(task: taskValue)
+                    }
                 }
             }
+            .padding([.leading, .trailing, .bottom], 8)
             .frame(
-                maxHeight: .infinity,
-                alignment: .topLeading
+                maxWidth: .infinity,
+                maxHeight: .greatestFiniteMagnitude,
+                alignment: .top
             )
         }
-        .frame(
-            maxWidth: .infinity,
-            maxHeight: .infinity,
-            alignment: .top
-        )
+
+        
     }
 }
 
