@@ -48,70 +48,9 @@ struct SimpleEntry: TimelineEntry {
     let date: Date
 }
 
-// medium 사이즈 위젯 뷰
-struct TaskWidgetMediumView : View {
+struct TaskWidgetView : View {
     var entry: Provider.Entry
-    var tasks: [Task] = [
-        Task(
-            status: .request,
-            title: "플로우 테크 세미나 준비",
-            assign: ["나"]
-        ),
-        Task(
-            status: .progress,
-            title: "테크 세미나 피피티 자료 준비하기",
-            assign: ["나"]
-        ),
-        Task(
-            status: .feedback,
-            title: "업무명의 길이가 길어진다면 어떻게 될까아아요?",
-            assign: ["나"]
-        ),
-        Task(
-            status: .complete,
-            title: "이건 완료 업무",
-            assign: ["나"]
-        ),
-        Task(
-            status: .hold,
-            title: "보류 업무",
-            assign: ["나"]
-        )
-    ]
-    var body: some View {
-        GroupBox(
-            label: Label("금일 마감 업무", systemImage: "list.clipboard")
-        ) {
-            LazyVStack(
-                alignment: .leading,
-                spacing: 8
-            ) {
-                ForEach(Array(tasks.enumerated()), id: \.offset) { index, taskValue in
-                    if index < 3 {
-                        TaskView(task: taskValue)
-                    }
-                }
-                
-                Text("+\(tasks.count-3)개 업무가 금일 마감입니다.")
-                    .font(.caption)
-                    .padding([.leading], 8)
-            }
-            .frame(
-                maxHeight: .infinity,
-                alignment: .topLeading
-            )
-        }
-        .frame(
-            maxWidth: .infinity,
-            maxHeight: .infinity,
-            alignment: .top
-        )
-    }
-}
-
-// Large 사이즈 위젯 뷰
-struct TaskWidgetLargeView : View {
-    var entry: Provider.Entry
+    @Environment(\.widgetFamily) var family: WidgetFamily
     var tasks: [Task] = [
         Task(
             status: .request,
@@ -159,52 +98,14 @@ struct TaskWidgetLargeView : View {
     ]
     
     var body: some View {
-        
-        VStack {
-            GroupBox(
-                label: Label("마감 업무", systemImage: "list.clipboard")
-            ) {
-                LazyVStack(
-                    alignment: .leading,
-                    spacing: 8
-                ) {
-                    ForEach(Array(tasks.enumerated()), id: \.offset) { index, taskValue in
-                        TaskView(task: taskValue)
-                    }
-                }
-                .frame(
-                    maxHeight: .infinity,
-                    alignment: .topLeading
-                )
-            }
-            .padding([.top, .leading, .trailing], 8)
-            .frame(
-                maxWidth: .infinity,
-                maxHeight: .infinity,
-                alignment: .top
-            )
-                        
-            GroupBox(
-                label: Label("이번주 우선 업무", systemImage: "list.clipboard")
-            ) {
-                LazyVStack(
-                    alignment: .leading,
-                    spacing: 8
-                ) {
-                    ForEach(Array(priorityTasks.enumerated()), id: \.offset) { index, taskValue in
-                        TaskView(task: taskValue)
-                    }
-                }
-            }
-            .padding([.leading, .trailing, .bottom], 8)
-            .frame(
-                maxWidth: .infinity,
-                maxHeight: .greatestFiniteMagnitude,
-                alignment: .top
-            )
+        switch family {
+        case .systemMedium:
+            TaskWidgetMedium(tasks: tasks)
+        case .systemLarge:
+            TaskWidgetLarge(tasks: tasks, priorityTasks: priorityTasks)
+        default:
+            Text("지원하지 않아요")
         }
-
-        
     }
 }
 
@@ -218,7 +119,7 @@ struct WidgetExtension: Widget {
             kind: kind,
             provider: Provider()
         ) { entry in
-            TaskWidgetMediumView(entry: entry)
+            TaskWidgetView(entry: entry)
         }
         .configurationDisplayName("위젯 공부")
         .description("위젯 푹 찍먹")
@@ -229,19 +130,21 @@ struct WidgetExtension: Widget {
 struct WidgetExtension_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            TaskWidgetMediumView(
+            TaskWidgetView(
                 entry: SimpleEntry(date: Date())
             )
             .previewContext(
                 WidgetPreviewContext(family: .systemMedium)
             )
+            .previewDisplayName("Medium Size")
             
-            TaskWidgetLargeView(
+            TaskWidgetView(
                 entry: SimpleEntry(date: Date())
             )
             .previewContext(
                 WidgetPreviewContext(family: .systemLarge)
             )
+            .previewDisplayName("Large Size")
         }
     }
 }
