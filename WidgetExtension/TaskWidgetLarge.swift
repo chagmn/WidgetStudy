@@ -12,7 +12,7 @@ struct TaskWidgetLarge: View {
     var priorityTasks: [Task]
     
     var body: some View {
-        VStack {
+        VStack() {
             GroupBox(
                 label: Label("마감 업무", systemImage: "list.clipboard")
             ) {
@@ -21,39 +21,36 @@ struct TaskWidgetLarge: View {
                     spacing: 8
                 ) {
                     ForEach(Array(tasks.enumerated()), id: \.offset) { index, taskValue in
-                        TaskView(task: taskValue)
+                        if index < 5 {
+                            TaskView(task: taskValue)
+                        }
                     }
                 }
-                .frame(
-                    maxHeight: .infinity,
-                    alignment: .topLeading
-                )
             }
-            .padding([.top, .leading, .trailing], 8)
-            .frame(
-                maxWidth: .infinity,
-                maxHeight: .infinity,
-                alignment: .top
-            )
-                        
+            .groupBoxStyle(PlainGroupBoxStyle())
+            .padding([.leading, .trailing], 8)
+            .padding(.bottom, -8)
+                
+            Divider()
+                .padding([.top, .bottom], 0)
+            
             GroupBox(
-                label: Label("이번주 우선 업무", systemImage: "list.clipboard")
+                label: Label("우선 업무", systemImage: "light.beacon.max")
             ) {
                 LazyVStack(
                     alignment: .leading,
                     spacing: 8
                 ) {
                     ForEach(Array(priorityTasks.enumerated()), id: \.offset) { index, taskValue in
-                        TaskView(task: taskValue)
+                        if index < 5 {
+                            TaskView(task: taskValue)
+                        }
                     }
                 }
             }
-            .padding([.leading, .trailing, .bottom], 8)
-            .frame(
-                maxWidth: .infinity,
-                maxHeight: .greatestFiniteMagnitude,
-                alignment: .top
-            )
+            .groupBoxStyle(PlainGroupBoxStyle())
+            .padding([.leading, .trailing], 8)
+            .padding(.top, -8)
         }
     }
 }

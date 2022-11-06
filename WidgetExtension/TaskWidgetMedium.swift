@@ -24,20 +24,26 @@ struct TaskWidgetMedium: View {
                     }
                 }
                 
-                Text("+\(tasks.count-3)개 업무가 금일 마감입니다.")
-                    .font(.caption)
-                    .padding([.leading], 8)
+                if tasks.count > 3{
+                    Text("+\(tasks.count-3)개 업무가 금일 마감입니다.")
+                        .font(.caption)
+                        .padding([.leading], 8)
+                }
             }
-            .frame(
-                maxHeight: .infinity,
-                alignment: .topLeading
-            )
         }
-        .frame(
-            maxWidth: .infinity,
-            maxHeight: .infinity,
-            alignment: .top
-        )    }
+        .groupBoxStyle(PlainGroupBoxStyle())
+    }
+}
+
+struct PlainGroupBoxStyle: GroupBoxStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        VStack(alignment: .leading) {
+            configuration.label
+            configuration.content
+        }
+        .padding(.all)
+
+    }
 }
 
 struct TaskWidgetMedium_Previews: PreviewProvider {

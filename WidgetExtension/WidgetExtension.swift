@@ -94,15 +94,37 @@ struct TaskWidgetView : View {
             status: .feedback,
             title: "업무명의 길이가 길어진다면 어떻게 될까아아요?",
             assign: ["나"]
+        ),
+        Task(
+            status: .feedback,
+            title: "업무명의 길이가 길어진다면 어떻게 될까아아요?",
+            assign: ["나"]
+        ),
+        Task(
+            status: .feedback,
+            title: "업무명의 길이가 길어진다면 어떻게 될까아아요?",
+            assign: ["나"]
+        ),
+        Task(
+            status: .feedback,
+            title: "업무명의 길이가 길어진다면 어떻게 될까아아요?",
+            assign: ["나"]
         )
     ]
     
     var body: some View {
         switch family {
         case .systemMedium:
-            TaskWidgetMedium(tasks: tasks)
+            TaskWidgetMedium(
+                tasks: tasks
+            )
+            
         case .systemLarge:
-            TaskWidgetLarge(tasks: tasks, priorityTasks: priorityTasks)
+            TaskWidgetLarge(
+                tasks: tasks,
+                priorityTasks: priorityTasks
+            )
+
         default:
             Text("지원하지 않아요")
         }
