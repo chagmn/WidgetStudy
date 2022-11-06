@@ -11,6 +11,8 @@
 		7610E8CF29155DA1009BE09E /* TaskWidgetMedium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E8CD29155D96009BE09E /* TaskWidgetMedium.swift */; };
 		7610E8D129155E63009BE09E /* TaskWidgetLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E8D029155E63009BE09E /* TaskWidgetLarge.swift */; };
 		7610E8D229155E63009BE09E /* TaskWidgetLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E8D029155E63009BE09E /* TaskWidgetLarge.swift */; };
+		7610E8D42917EEC7009BE09E /* TaskWidgetCircular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E8D32917EEC7009BE09E /* TaskWidgetCircular.swift */; };
+		7610E8D52917EEC7009BE09E /* TaskWidgetCircular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7610E8D32917EEC7009BE09E /* TaskWidgetCircular.swift */; };
 		767883C5278207960028B3DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767883C4278207960028B3DD /* AppDelegate.swift */; };
 		767883C7278207960028B3DD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767883C6278207960028B3DD /* SceneDelegate.swift */; };
 		767883C9278207960028B3DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 767883C8278207960028B3DD /* ViewController.swift */; };
@@ -74,6 +76,7 @@
 /* Begin PBXFileReference section */
 		7610E8CD29155D96009BE09E /* TaskWidgetMedium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskWidgetMedium.swift; sourceTree = "<group>"; };
 		7610E8D029155E63009BE09E /* TaskWidgetLarge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskWidgetLarge.swift; sourceTree = "<group>"; };
+		7610E8D32917EEC7009BE09E /* TaskWidgetCircular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskWidgetCircular.swift; sourceTree = "<group>"; };
 		767883C1278207960028B3DD /* Study_Widget.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Study_Widget.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		767883C4278207960028B3DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		767883C6278207960028B3DD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +135,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7610E8D62917EED2009BE09E /* Family */ = {
+			isa = PBXGroup;
+			children = (
+				7610E8CD29155D96009BE09E /* TaskWidgetMedium.swift */,
+				7610E8D029155E63009BE09E /* TaskWidgetLarge.swift */,
+				7610E8D32917EEC7009BE09E /* TaskWidgetCircular.swift */,
+			);
+			path = Family;
+			sourceTree = "<group>";
+		};
 		767883B8278207960028B3DD = {
 			isa = PBXGroup;
 			children = (
@@ -201,8 +214,7 @@
 			children = (
 				767883FF278207A90028B3DD /* WidgetExtension.swift */,
 				767903BE2910106D00B04F4C /* TaskView.swift */,
-				7610E8CD29155D96009BE09E /* TaskWidgetMedium.swift */,
-				7610E8D029155E63009BE09E /* TaskWidgetLarge.swift */,
+				7610E8D62917EED2009BE09E /* Family */,
 				76788401278207A90028B3DD /* WidgetExtension.intentdefinition */,
 				76788402278207AA0028B3DD /* Assets.xcassets */,
 				76788404278207AA0028B3DD /* Info.plist */,
@@ -386,6 +398,7 @@
 				7610E8CF29155DA1009BE09E /* TaskWidgetMedium.swift in Sources */,
 				767903BB29100D6B00B04F4C /* Task.swift in Sources */,
 				767903C32910156400B04F4C /* TaskView.swift in Sources */,
+				7610E8D42917EEC7009BE09E /* TaskWidgetCircular.swift in Sources */,
 				767883C5278207960028B3DD /* AppDelegate.swift in Sources */,
 				767883C7278207960028B3DD /* SceneDelegate.swift in Sources */,
 			);
@@ -417,6 +430,7 @@
 				76788400278207A90028B3DD /* WidgetExtension.swift in Sources */,
 				767903C12910153600B04F4C /* TaskView.swift in Sources */,
 				7610E8D229155E63009BE09E /* TaskWidgetLarge.swift in Sources */,
+				7610E8D52917EEC7009BE09E /* TaskWidgetCircular.swift in Sources */,
 				7610E8CE29155D96009BE09E /* TaskWidgetMedium.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

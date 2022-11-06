@@ -25,6 +25,12 @@ struct TaskWidgetLarge: View {
                             TaskView(task: taskValue)
                         }
                     }
+                    
+                    if tasks.count == 0 {
+                        Text("마감 업무가 없습니다.")
+                            .font(.caption)
+                            .padding([.leading], 8)
+                    }
                 }
             }
             .groupBoxStyle(PlainGroupBoxStyle())
@@ -46,6 +52,12 @@ struct TaskWidgetLarge: View {
                             TaskView(task: taskValue)
                         }
                     }
+                    
+                    if priorityTasks.count == 0 {
+                        Text("우선순위로 등록된 업무가 없습니다.")
+                            .font(.caption)
+                            .padding([.leading], 8)
+                    }
                 }
             }
             .groupBoxStyle(PlainGroupBoxStyle())
@@ -57,10 +69,10 @@ struct TaskWidgetLarge: View {
 
 struct TaskWidgetLarge_Previews: PreviewProvider {
     static let tasks: [Task] = [
-        Task(status: .request, title: "임시", assign: [])
+//        Task(status: .request, title: "임시", assign: [])
         ]
     static let priorityTasks: [Task] = [
-        Task(status: .complete, title: "임시", assign: [])
+//        Task(status: .complete, title: "임시", assign: [])
         ]
     
     static var previews: some View {

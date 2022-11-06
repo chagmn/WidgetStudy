@@ -124,6 +124,10 @@ struct TaskWidgetView : View {
                 tasks: tasks,
                 priorityTasks: priorityTasks
             )
+            
+        case .accessoryCircular:
+            TaskWidgetCircular()
+            
 
         default:
             Text("지원하지 않아요")

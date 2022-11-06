@@ -28,6 +28,11 @@ struct TaskWidgetMedium: View {
                     Text("+\(tasks.count-3)개 업무가 금일 마감입니다.")
                         .font(.caption)
                         .padding([.leading], 8)
+                    
+                } else if tasks.count == 0 {
+                    Text("금일 마감 업무가 없습니다.")
+                        .font(.caption)
+                        .padding([.leading], 8)
                 }
             }
         }
@@ -48,7 +53,7 @@ struct PlainGroupBoxStyle: GroupBoxStyle {
 
 struct TaskWidgetMedium_Previews: PreviewProvider {
     static let tasks: [Task] = [
-        Task(status: .complete, title: "임시", assign: [])
+//        Task(status: .complete, title: "임시", assign: [])
         ]
     
     static var previews: some View {
