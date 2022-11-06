@@ -125,8 +125,12 @@ struct TaskWidgetView : View {
                 priorityTasks: priorityTasks
             )
             
-        case .accessoryCircular:
-            TaskWidgetCircular()
+        case .accessoryRectangular:
+            TaskWidgetRectangle(
+                tasks: tasks
+            )
+            .frame(maxWidth: .infinity)
+            
             
 
         default:
@@ -171,6 +175,18 @@ struct WidgetExtension_Previews: PreviewProvider {
                 WidgetPreviewContext(family: .systemLarge)
             )
             .previewDisplayName("Large Size")
+            
+            if #available(iOSApplicationExtension 16.0, *) {
+                TaskWidgetView(
+                    entry: SimpleEntry(date: Date())
+                )
+                .previewContext(
+                    WidgetPreviewContext(family: .accessoryRectangular)
+                )
+                .previewDisplayName("Rectangular")
+            } else {
+                // Fallback on earlier versions
+            }
         }
     }
 }
