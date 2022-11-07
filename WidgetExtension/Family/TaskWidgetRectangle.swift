@@ -25,18 +25,19 @@ struct TaskWidgetRectangle: View {
                             Text("요청")
                                 .font(.subheadline)
                             
-                            Text("10건")
+                            Text("10")
                                 .font(.subheadline)
-                                .gridColumnAlignment(.trailing)
-                            
-                            Spacer()
+                        }
+                        .gridColumnAlignment(.listRowSeparatorLeading)
+                        
+                        HStack {
                             Text("진행")
                                 .font(.subheadline)
                             
-                            Text("\(tasks.count)건")
+                            Text("12")
                                 .font(.subheadline)
-                                .gridColumnAlignment(.trailing)
                         }
+                        .gridColumnAlignment(.listRowSeparatorTrailing)
                     }
                     
                     GridRow {
@@ -44,20 +45,13 @@ struct TaskWidgetRectangle: View {
                             Text("피드백")
                                 .font(.subheadline)
                             
-                            Text("30건")
+                            Text("30")
                                 .font(.subheadline)
-                                .gridColumnAlignment(.trailing)
-                            
-//                            Spacer()
-                            
-                            Text("완료")
-                                .font(.subheadline)
-                            
-                            Text("\(tasks.count)건")
-                                .font(.subheadline)
-                                .gridColumnAlignment(.trailing)
+                                .padding(.leading, 2)
+                    
                         }
                     }
+
                 }
                 .padding([.leading, .trailing], 4)
             } else {
