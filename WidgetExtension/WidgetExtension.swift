@@ -139,6 +139,7 @@ struct TaskWidgetView : View {
     }
 }
 
+@available(iOSApplicationExtension 16.0, *)
 @main
 struct WidgetExtension: Widget {
     private let kind: String = "WidgetExtension"
@@ -153,7 +154,7 @@ struct WidgetExtension: Widget {
         }
         .configurationDisplayName("위젯 공부")
         .description("위젯 푹 찍먹")
-        .supportedFamilies([.systemMedium,.systemLarge])
+        .supportedFamilies([.systemMedium,.systemLarge, .accessoryRectangular])
     }
 }
 

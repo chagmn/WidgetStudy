@@ -14,41 +14,56 @@ struct TaskWidgetRectangle: View {
         VStack(alignment: .leading) {
             Text("업무 현황")
                 .font(.headline)
+                .padding(.bottom, 0)
             if #available(iOS 16.0, *) {
                 Grid(
                     alignment: .leading,
-                    verticalSpacing: 4
+                    verticalSpacing: 0
                 ) {
                     GridRow {
-                        Text("요청")
-                            .font(.subheadline)
-                        
-                        Text("\(tasks.count)건")
-                            .gridColumnAlignment(.trailing)
+                        HStack {
+                            Text("요청")
+                                .font(.subheadline)
+                            
+                            Text("10건")
+                                .font(.subheadline)
+                                .gridColumnAlignment(.trailing)
+                            
+                            Spacer()
+                            Text("진행")
+                                .font(.subheadline)
+                            
+                            Text("\(tasks.count)건")
+                                .font(.subheadline)
+                                .gridColumnAlignment(.trailing)
+                        }
                     }
                     
                     GridRow {
-                        Text("진행")
-                            .font(.subheadline)
-                        
-                        Text("13건")
-                            .gridColumnAlignment(.trailing)
-                    }
-                    
-                    GridRow {
-                        Text("피드백")
-                            .font(.subheadline)
-                            .padding(.trailing, 4)
-                        
-                        Text("334건")
-                            .gridColumnAlignment(.trailing)
+                        HStack {
+                            Text("피드백")
+                                .font(.subheadline)
+                            
+                            Text("30건")
+                                .font(.subheadline)
+                                .gridColumnAlignment(.trailing)
+                            
+//                            Spacer()
+                            
+                            Text("완료")
+                                .font(.subheadline)
+                            
+                            Text("\(tasks.count)건")
+                                .font(.subheadline)
+                                .gridColumnAlignment(.trailing)
+                        }
                     }
                 }
+                .padding([.leading, .trailing], 4)
             } else {
                 // Fallback on earlier versions
             }
         }
-        .background(Color.yellow)
     }
     
     
