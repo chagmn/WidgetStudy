@@ -53,7 +53,14 @@ struct TaskWidgetRectangle: View {
                     }
 
                 }
-                .padding([.leading, .trailing], 4)
+                .padding(.leading, 6)
+                .padding(.trailing, 4)
+                .overlay(
+                         Rectangle()
+                             .frame(width: 2)
+                             .foregroundColor(.black),
+                         alignment: .leading
+                )
             } else {
                 // Fallback on earlier versions
             }
