@@ -17,14 +17,13 @@ struct Test: View {
                     DayView(index)
                 }
             }
-            .padding([.leading, .trailing])
             
             Divider()
                 .padding([.leading, .trailing], 8)
                 .padding([.top, .bottom], 0)
             
             GroupBox(
-                label: Label("마감 업무", systemImage: "list.clipboard")
+                label: Label("금일 마감 업무", systemImage: "list.clipboard")
                     .padding(.top, -12)
             ) {
                 LazyVStack(
@@ -45,11 +44,13 @@ struct Test: View {
                 }
             }
             .groupBoxStyle(PlainGroupBoxStyle())
-            .padding([.leading, .trailing], 8)
             .padding(.bottom, -8)
-            
-          
         }
+        .frame(
+            maxWidth: .infinity,
+            maxHeight: .infinity,
+            alignment: .top
+        )
     }
 }
 
@@ -62,6 +63,7 @@ struct DayView: View {
     
     var body: some View {
         let weeks = self.getWeeks()
+        let todayIndex = Calendar.current.component(.weekday, from: Date()) - 1
         
         VStack(
             alignment: .center
@@ -70,17 +72,18 @@ struct DayView: View {
             Text("\(Calendar.current.component(.day, from: weeks[index]))")
                 .foregroundColor(index == 0 ? .red : index == 6 ? .blue : .black)
                 .font(.caption)
-                
+            
             Text("\(Calendar.current.shortWeekdaySymbols[index])")
                 .foregroundColor(index == 0 ? .red : index == 6 ? .blue : .black)
                 .font(.caption2)
                 
                 
         }
-        .frame(width: 44, height: 44)
-        .cornerRadius(22)
+        .frame(width: 36, height: 36)
+        .background(todayIndex == index ? Color.secondary : Color.clear)
+        .cornerRadius(18)
         .overlay {
-            RoundedRectangle(cornerRadius: 22)
+            RoundedRectangle(cornerRadius: 18)
                 .stroke(.gray, lineWidth: 1)
         }
     }
