@@ -18,7 +18,6 @@ struct Test: View {
                 }
             }
             .padding([.leading, .trailing])
-            .background(Color.yellow)
             
             Divider()
                 .padding([.leading, .trailing], 8)
@@ -69,13 +68,21 @@ struct DayView: View {
         ) {
 
             Text("\(Calendar.current.component(.day, from: weeks[index]))")
+                .foregroundColor(index == 0 ? .red : index == 6 ? .blue : .black)
                 .font(.caption)
-                .frame(width: 44, height: 44)
-                .border(.green, width: 1)
-                .cornerRadius(22)
-
+                
+            Text("\(Calendar.current.shortWeekdaySymbols[index])")
+                .foregroundColor(index == 0 ? .red : index == 6 ? .blue : .black)
+                .font(.caption2)
+                
+                
         }
-        
+        .frame(width: 44, height: 44)
+        .cornerRadius(22)
+        .overlay {
+            RoundedRectangle(cornerRadius: 22)
+                .stroke(.gray, lineWidth: 1)
+        }
     }
         
     func getWeeks() -> [Date] {
