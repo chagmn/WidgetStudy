@@ -120,10 +120,11 @@ struct TaskWidgetView : View {
             )
             
         case .systemLarge:
-            TaskWidgetLarge(
-                tasks: tasks,
-                priorityTasks: priorityTasks
-            )
+            //            TaskWidgetLarge(
+            //                tasks: tasks,
+            //                priorityTasks: priorityTasks
+            //            )
+            Test(tasks: tasks)
             
         case .accessoryRectangular:
             TaskWidgetRectangle(
@@ -131,8 +132,6 @@ struct TaskWidgetView : View {
             )
             .frame(maxWidth: .infinity)
             
-            
-
         default:
             Text("지원하지 않아요")
         }
