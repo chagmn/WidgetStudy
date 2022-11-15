@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Test: View {
+struct TaskWidgetNewLarge: View {
     var tasks: [Task]
     
     var body: some View {
@@ -111,6 +111,6 @@ struct Test_Previews: PreviewProvider {
         ]
     
     static var previews: some View {
-        Test(tasks: tasks)
+        TaskWidgetNewLarge(tasks: tasks)
     }
 }
