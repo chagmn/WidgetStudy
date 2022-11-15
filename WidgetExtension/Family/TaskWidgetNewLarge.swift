@@ -80,7 +80,9 @@ struct DayView: View {
                 
         }
         .frame(width: 36, height: 36)
-        .background(todayIndex == index ? Color.secondary : Color.clear)
+        .background(
+            todayIndex == index ? Color(uiColor: UIColor.systemGray4) : Color.clear
+        )
         .cornerRadius(18)
         .overlay {
             RoundedRectangle(cornerRadius: 18)
@@ -105,7 +107,7 @@ struct DayView: View {
     }
 }
 
-struct Test_Previews: PreviewProvider {
+struct TaskWidgetNewLarge_Previews: PreviewProvider {
     static let tasks: [Task] = [
 //        Task(status: .request, title: "임시", assign: [])
         ]

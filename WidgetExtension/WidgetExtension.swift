@@ -124,7 +124,7 @@ struct TaskWidgetView : View {
             //                tasks: tasks,
             //                priorityTasks: priorityTasks
             //            )
-            Test(tasks: tasks)
+            TaskWidgetNewLarge(tasks: tasks)
                 .padding(.top)
             
         case .accessoryRectangular:
