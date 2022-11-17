@@ -31,7 +31,7 @@ struct TaskWidgetNewLarge: View {
                     spacing: 8
                 ) {
                     ForEach(Array(tasks.enumerated()), id: \.offset) { index, taskValue in
-                        if index < 5 {
+                        if index < 10 && taskValue.status.rawValue < 3 {
                             TaskView(task: taskValue)
                         }
                     }
