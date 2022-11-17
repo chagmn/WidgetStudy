@@ -28,7 +28,7 @@ struct Task: Hashable {
 }
 
 
-enum TaskStatus {
+enum TaskStatus: Int {
     case request
     case progress
     case feedback
