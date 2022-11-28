@@ -81,7 +81,7 @@ struct DayView: View {
         }
         .frame(width: 36, height: 36)
         .background(
-            todayIndex == index ? Color(uiColor: UIColor.systemGray4) : Color.clear
+            todayIndex == index ? Color(uiColor: UIColor.systemFill) : Color.clear
         )
         .cornerRadius(18)
         .overlay {

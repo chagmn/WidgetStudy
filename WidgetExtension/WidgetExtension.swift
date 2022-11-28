@@ -10,16 +10,46 @@ import SwiftUI
 import Intents
 
 struct Provider: TimelineProvider {
-    // 설정에서의 프리뷰 화면
+    // 현재 시간이나 상태를 나타내는 타임라인 엔트리 제공
     func getSnapshot(in context: Context, completion: @escaping (SimpleEntry) -> Void) {
-        let entry = SimpleEntry(date: Date())
+        let entry = SimpleEntry(
+            date: Date(),
+            tasks: [Task(status: .request, title: "snapshot", assign: ["윙"])]
+        )
         completion(entry)
     }
     
-    // TimelineEntry에 들어있는 값을 표현해주는 부분
+    // 현재 시간이나 위젯을 업데이트할 시간에 대한 타임라인 엔트리 배열을 제공
     func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> Void) {
         var entries: [SimpleEntry] = []
         let currentDate = Date()
+        let tasks: [Task] = [
+            Task(
+                status: .request,
+                title: "플로우 테크 세미나 준비",
+                assign: ["나"]
+            ),
+            Task(
+                status: .progress,
+                title: "테크 세미나 피피티 자료 준비하기",
+                assign: ["나"]
+            ),
+            Task(
+                status: .feedback,
+                title: "업무명의 길이가 길어진다면 어떻게 될까아아요?",
+                assign: ["나"]
+            ),
+            Task(
+                status: .complete,
+                title: "이건 완료 업무",
+                assign: ["나"]
+            ),
+            Task(
+                status: .hold,
+                title: "보류 업무",
+                assign: ["나"]
+            )
+        ]
         
         // 3분마다 위젯 갱신
         for minuteOffset in 0 ..< 3 {
@@ -28,7 +58,7 @@ struct Provider: TimelineProvider {
                 value: minuteOffset,
                 to: currentDate
             )!
-            let entry = SimpleEntry(date: entryDate)
+            let entry = SimpleEntry(date: entryDate, tasks: tasks)
             
             entries.append(entry)
         }
@@ -38,100 +68,36 @@ struct Provider: TimelineProvider {
         completion(timeline)
     }
     
-    // 갱신 전에 디폴트로 값을 보여주는 부분
+    // placeholder버전을 나타내는 타임라인 엔트리를 제공
     func placeholder(in context: Context) -> SimpleEntry {
-        return SimpleEntry(date: Date())
+        return SimpleEntry(
+            date: Date(),
+            tasks: [Task(status: .request, title: "placeholder", assign: ["윙"])]
+        )
     }
 }
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
+    let tasks: [Task]
 }
 
 struct TaskWidgetView : View {
     var entry: Provider.Entry
     @Environment(\.widgetFamily) var family: WidgetFamily
-    var tasks: [Task] = [
-        Task(
-            status: .request,
-            title: "플로우 테크 세미나 준비",
-            assign: ["나"]
-        ),
-        Task(
-            status: .progress,
-            title: "테크 세미나 피피티 자료 준비하기",
-            assign: ["나"]
-        ),
-        Task(
-            status: .feedback,
-            title: "업무명의 길이가 길어진다면 어떻게 될까아아요?",
-            assign: ["나"]
-        ),
-        Task(
-            status: .complete,
-            title: "이건 완료 업무",
-            assign: ["나"]
-        ),
-        Task(
-            status: .hold,
-            title: "보류 업무",
-            assign: ["나"]
-        )
-    ]
-    
-    var priorityTasks: [Task] = [
-        Task(
-            status: .request,
-            title: "급한업무",
-            assign: ["나"]
-        ),
-        Task(
-            status: .progress,
-            title: "테크 세미나 피피티 자료 준비하기",
-            assign: ["나"]
-        ),
-        Task(
-            status: .feedback,
-            title: "업무명의 길이가 길어진다면 어떻게 될까아아요?",
-            assign: ["나"]
-        ),
-        Task(
-            status: .feedback,
-            title: "업무명의 길이가 길어진다면 어떻게 될까아아요?",
-            assign: ["나"]
-        ),
-        Task(
-            status: .feedback,
-            title: "업무명의 길이가 길어진다면 어떻게 될까아아요?",
-            assign: ["나"]
-        ),
-        Task(
-            status: .feedback,
-            title: "업무명의 길이가 길어진다면 어떻게 될까아아요?",
-            assign: ["나"]
-        )
-    ]
     
     var body: some View {
         switch family {
         case .systemMedium:
-            TaskWidgetMedium(
-                tasks: tasks
-            )
+            TaskWidgetMedium(tasks: entry.tasks)
             
         case .systemLarge:
-            //            TaskWidgetLarge(
-            //                tasks: tasks,
-            //                priorityTasks: priorityTasks
-            //            )
-            TaskWidgetNewLarge(tasks: tasks)
+            TaskWidgetNewLarge(tasks: entry.tasks)
                 .padding(.top)
             
         case .accessoryRectangular:
-            TaskWidgetRectangle(
-                tasks: tasks
-            )
-            .frame(maxWidth: .infinity)
+            TaskWidgetRectangle(tasks: entry.tasks)
+                .frame(maxWidth: .infinity)
             
         default:
             Text("지원하지 않아요")
@@ -144,7 +110,7 @@ struct TaskWidgetView : View {
 struct WidgetExtension: Widget {
     private let kind: String = "WidgetExtension"
     
-    // 위젯 설정에서 설정하는 부분
+    // 위젯 추가 화면
     var body: some WidgetConfiguration {
         StaticConfiguration(
             kind: kind,
@@ -153,8 +119,12 @@ struct WidgetExtension: Widget {
             TaskWidgetView(entry: entry)
         }
         .configurationDisplayName("위젯 공부")
-        .description("위젯 푹 찍먹")
-        .supportedFamilies([.systemMedium,.systemLarge, .accessoryRectangular])
+        .description("위젯 설명 블라블라블라")
+        .supportedFamilies([
+            .systemMedium,
+            .systemLarge,
+            .accessoryRectangular
+        ])
     }
 }
 
@@ -162,7 +132,9 @@ struct WidgetExtension_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             TaskWidgetView(
-                entry: SimpleEntry(date: Date())
+                entry: SimpleEntry(date: Date(), tasks:  [
+                    Task(status: .request, title: "snapshot", assign: ["윙"])
+                ])
             )
             .previewContext(
                 WidgetPreviewContext(family: .systemMedium)
@@ -170,7 +142,9 @@ struct WidgetExtension_Previews: PreviewProvider {
             .previewDisplayName("Medium Size")
             
             TaskWidgetView(
-                entry: SimpleEntry(date: Date())
+                entry: SimpleEntry(date: Date(), tasks: [
+                    Task(status: .request, title: "snapshot", assign: ["윙"])
+                ])
             )
             .previewContext(
                 WidgetPreviewContext(family: .systemLarge)
@@ -179,7 +153,9 @@ struct WidgetExtension_Previews: PreviewProvider {
             
             if #available(iOSApplicationExtension 16.0, *) {
                 TaskWidgetView(
-                    entry: SimpleEntry(date: Date())
+                    entry: SimpleEntry(date: Date(), tasks: [
+                        Task(status: .request, title: "snapshot", assign: ["윙"])
+                    ])
                 )
                 .previewContext(
                     WidgetPreviewContext(family: .accessoryRectangular)
